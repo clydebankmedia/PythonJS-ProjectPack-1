@@ -10,6 +10,7 @@ async function getCurrencies() {
 async function convertCurrency(fromCurrency, toCurrency, amount) {
     const response = await fetch(`${BASE_URL}/latest.json?app_id=${APP_ID}&base=${fromCurrency}`);
     const data = await response.json();
+    if(data.error) throw new Error(data.description);
     const converted = data.rates[toCurrency] * amount;
     const ts = new Date(data.timestamp * 1000).toLocaleString();
     return { converted, ts };
