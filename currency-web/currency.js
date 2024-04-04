@@ -8,11 +8,21 @@ async function getCurrencies() {
 }
 
 async function convertCurrency(fromCurrency, toCurrency, amount) {
-    const response = await fetch(`${BASE_URL}/latest.json?app_id=${APP_ID}&base=${fromCurrency}`);
-    const data = await response.json();
-    if(data.error) throw new Error(data.description);
-    const converted = data.rates[toCurrency] * amount;
-    const ts = new Date(data.timestamp * 1000).toLocaleString();
+    const fromResponse = await fetch(`${BASE_URL}/latest.json?app_id=${APP_ID}`); //returns array of rates from USD to other currencies
+    const fromData = await fromResponse.json();
+	
+	  if(fromData.error) throw new Error(fromData.description);
+
+    const amountInUSD = amount / fromData.rates[fromCurrency]; //get initial amount in USD
+	
+	 
+	  const toResponse = await fetch(`${BASE_URL}/latest.json?app_id=${APP_ID}`); //returns array of rates from USD to other currencies
+    const toData = await toResponse.json();
+	
+	  if(toData.error) throw new Error(toData.description);
+
+    const converted = toData.rates[toCurrency] * amountInUSD; //get USD amount in target currency
+    const ts = new Date(toData.timestamp * 1000).toLocaleString();
     return { converted, ts };
 }
 
