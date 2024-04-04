@@ -24,7 +24,7 @@ async function populateCurrencies() {
         for (const [symbol, name] of Object.entries(currencies)) {
             const option = document.createElement('option');
             option.value = symbol;
-            option.textContent = `${name} (${symbol})`;
+            option.textContent = `${symbol} (${name})`;
             select.appendChild(option);
         }
     }
