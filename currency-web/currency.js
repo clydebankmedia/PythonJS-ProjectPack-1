@@ -1,5 +1,5 @@
 BASE_URL = 'https://openexchangerates.org/api';
-APP_ID = 'cfe66050a8494102bf905fbceeffa695';
+APP_ID = 'YOUR_APP_ID'; //replace with your own app ID
 
 async function getCurrencies() {
   const response = await fetch(`${BASE_URL}/currencies.json`);
