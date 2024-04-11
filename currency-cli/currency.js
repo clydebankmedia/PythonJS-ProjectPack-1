@@ -1,6 +1,6 @@
 const https = require('https');
 
-const APP_ID = 'cfe66050a8494102bf905fbceeffa695';
+const APP_ID = YOUR_APP_ID; //replace with your own app ID
 const BASE_URL = 'openexchangerates.org';
 
 const [fromCurrency, toCurrency, amount] = process.argv.slice(2, 5);
@@ -25,7 +25,8 @@ const req = https.get(options, response => {
 
     response.on('end', () => {
         const body = JSON.parse(data.join(''));
-        const converted = body.rates[toCurrency] * amount;
+        const amountInUSD = amount / body.rates[fromCurrency]; //get initial amount in USD
+        const converted = body.rates[toCurrency] * amountInUSD;
         const ts = new Date(body.timestamp * 1000).toLocaleString();
         console.log(`As of ${ts}: ${amount} (${fromCurrency}) = ${converted} (${toCurrency})`);
     });
