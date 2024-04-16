@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Eye Dropper Color Picker</title>
+  <title>Eyedropper Color Picker</title>
   <style>
     body {
       text-align: center;
@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <h1>Eye Dropper Color Picker</h1>
+  <h1>Eyedropper Color Picker</h1>
 
   <div id="eye-dropper">
     <label for="eye-dropper-button">Click the button and then pick a color from anywhere on the screen:</label>
@@ -31,7 +31,7 @@
 
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script>
-    // Check if EyeDropper API is supported (for Chrome)
+    // Check if EyeDropper API is supported (for browsers like Chrome and Edge)
     if (typeof EyeDropper !== "function") {
         // Fallback for other browsers (including Firefox)
         $("#eye-dropper").text("Eye Dropper API not supported in this browser.");
