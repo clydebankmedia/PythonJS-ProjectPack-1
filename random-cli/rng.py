@@ -5,7 +5,7 @@ DEFAULT_MIN = 1
 DEFAULT_MAX = 100
 
 if len(sys.argv) > 3:
-  print("Usage: python ./rng [min] [max]")
+  print(f"Usage: python {sys.argv[0]} [min] [max]")
   sys.exit(1)
 
 try:  
