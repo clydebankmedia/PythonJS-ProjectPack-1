@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .error {
+        color: red;
+      }
+      input[type=number]:invalid {
+          border: 3px solid red;
+      }
+    </style>
+    <title>Currency Converter</title>
+  </head>
+  <body>
+    <h1>Currency Converter</h1>
+    <div>
+      <label for="amountInput">Amount:</label>
+  
+      <!-- Using step="any" lets the user enter as many digits after the
+      decimal place as desired without marking the input as invalid. -->
+      <input type="number" id="amountInput" step="any" min="0.0" placeholder="Enter amount" />
+      
+      <label for="fromSelect">From:</label>
+      <select id="fromSelect"> </select>
+      <label for="toSelect">To:</label>
+      <select id="toSelect"> </select>
+    </div>
+  
+    <div id="errorMsgDiv" class="error"></div>
+    <button id="convertBtn">Convert</button>
+    <div id="resultDiv"></div>
+  
+    <script src="currency.js"></script>
+  </body>
+</html>

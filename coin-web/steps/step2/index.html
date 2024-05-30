@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Coin Flip Simulator</title>
+</head>
+<body>
+  <h1>Coin Flip Simulator</h1>
+  <!-- Inside <body> -->
+  <div>
+    <label for="numFlips">Number of flips:</label>
+    <input type="number" id="numFlipsInput" min="1" value="1" />
+    <button id="simulateBtn">Simulate</button>
+  </div>
+  <div class="results">
+    <p>Heads: <span id="headsCountSpan">0</span></p>
+    <p>Tails: <span id="tailsCountSpan">0</span></p>
+    <p>Percentage of heads: <span id="percentageHeadsSpan">0</span>%</p>
+  </div>
+  <details>
+    <summary>Results</summary>
+    <ul id="flipsList"></ul>
+  </details>  
+</body>
+</html>

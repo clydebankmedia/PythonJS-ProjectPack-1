@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Eyedropper Color Picker</title>
+  <style>
+    body {
+        text-align: center;
+    }
+    
+    div {
+        margin: auto;
+    }
+    
+    #picked-color {
+        width: 50px;
+        height: 50px;
+        margin-top: 10px;
+        border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Eyedropper Color Picker</h1>
+
+  <div id="eye-dropper">
+    <label for="eye-dropper-button">
+      Click the button and then pick a color from anywhere on the screen:
+    </label>
+    <button id="eye-dropper-button">Pick Color</button>
+    <div id="picked-color"></div>
+    <p id="color-label"></p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</body>
+</html>

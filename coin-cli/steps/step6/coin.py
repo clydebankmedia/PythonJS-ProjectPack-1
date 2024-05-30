@@ -1,8 +1,3 @@
-# A coin flip is really just a RNG: either 0 or 1. So this is not much
-# more than the RNG, though the simulation and statistical aspect adds
-# a bit more.
-# We'll use `argparse` here for some extra meat.
-# https://docs.python.org/3/library/argparse.html
 import random
 from argparse import ArgumentParser
 
@@ -19,11 +14,13 @@ parser.add_argument("-s", "--stats", action="store_true", default=False,
                     help="compute and show stats")
 args = parser.parse_args()
 
+
+# You could also do this check by providing a validity-checking
+# function as the `type` parameter to `parse.add_argument` above. But
+# I'll take a simple approach here.
 if args.num_flips < 1:
-	print(f"Expected a positive number of flips, not {args.num_flips}")
-	exit(1)
-
-
+  print(f"Expected a positive number of flips, not {args.num_flips}")
+  exit(1)
 
 total = 0
 for _ in range(args.num_flips):

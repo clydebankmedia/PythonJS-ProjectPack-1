@@ -23,6 +23,6 @@ if __name__ == '__main__':
   try:
     end = int(user_arg)
     fizzbuzz(end)
-  except ValueError as e:
+  except ValueError:
     print(f"{user_arg} is not a positive integer.")
     exit(1)

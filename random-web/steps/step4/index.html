@@ -21,7 +21,7 @@
         const minVal = parseInt(min.value);
         const maxVal = parseInt(max.value);
         if (minVal > maxVal) {
-          alert("Range min cannot be greater than range min.");
+          alert("Range min cannot be greater than range max.");
         } else {
           const random = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
           result.innerHTML = random;

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Coin Flip Simulator</title>
+  <style>
+    input:invalid {
+      border: red solid 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Coin Flip Simulator</h1>
+  <!-- Inside <body> -->
+  <div>
+    <label for="numFlips">Number of flips:</label>
+    <!-- Note the `pattern` attribute. If you don't know regular
+    expressions, you can simply use `parseInt` in the JS instead. -->
+    <input type="number" id="numFlipsInput" min="1" value="1" pattern="\d+"
+           title="Positive integer required" required />
+    <button id="simulateBtn">Simulate</button>
+  </div>
+  <div class="results">
+    <p>Heads: <span id="headsCountSpan">0</span></p>
+    <p>Tails: <span id="tailsCountSpan">0</span></p>
+    <p>Percentage of heads: <span id="percentageHeadsSpan">0</span>%</p>
+    <p>Probability of this outcome: <span id="probabilitySpan">0</span>%</p>
+  </div>
+  <details>
+    <summary>Results</summary>
+    <ul id="flipsList"></ul>
+  </details>  
+
+  <script>
+    /* In <script> inside <body> */
+    const numFlipsInput = document.getElementById('numFlipsInput');
+    const simulateBtn = document.getElementById('simulateBtn');
+    
+    const headsCountSpan = document.getElementById("headsCountSpan");
+    const tailsCountSpan = document.getElementById("tailsCountSpan");
+    const percentageHeadsSpan = document.getElementById("percentageHeadsSpan");
+    const flipsList = document.getElementById("flipsList");
+    const probabilitySpan = document.getElementById("probabilitySpan");
+    
+    function factorial(n) {
+      let result = 1;
+      for (let i = 2; i <= n; i++) {
+        result *= i;
+      }
+      return result;
+    }
+    
+    function binom(n, k) {
+      return factorial(n) / (factorial(k) * factorial(n-k));
+    }
+      
+    simulateBtn.addEventListener('click', () => {
+      // `parseInt` is good enough to save you from errors, but I'll be even more strict.
+      if (! /^\d+$/.test(numFlipsInput.value)) {
+        // We don't need to do much here because the user can hover of the
+        // <input> to see the message. We just want to make sure not to
+        // run the simultion.
+        return;
+      }
+      
+      const numFlips = parseInt(numFlipsInput.value);
+      let headsCount = 0;
+      let flips = [];
+    
+      for (let i = 0; i < numFlips; i++) {
+        const flip = Math.round(Math.random());
+        headsCount += flip;
+        flips.push(flip ? 'H' : 'T')
+      };
+      
+      headsCountSpan.textContent = headsCount;
+      tailsCountSpan.textContent = numFlips - headsCount;
+      const percentageHeads = (headsCount / numFlips * 100).toFixed(2);
+      percentageHeadsSpan.textContent = percentageHeads;
+      const probability = binom(numFlips, headsCount) * Math.pow(0.5, headsCount) *
+            Math.pow(0.5, numFlips - headsCount);
+      probabilitySpan.textContent = (probability * 100).toFixed(2);
+    
+      flipsList.innerHTML = ""; // clear old results
+      for (let i = 0; i < numFlips; i++) {
+        const li = document.createElement("li");
+        li.textContent = `Flip ${i+1}: ${flips[i]}`;
+        flipsList.appendChild(li);
+      }
+    });
+  </script>
+</body>
+</html>
